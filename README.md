@@ -1,33 +1,41 @@
-# Sammy's Grill — Prairieville | Website Redesign Concept
+# Sammy's Grill — Website Redesign Concept
 
-An unsolicited, single-page redesign concept for **Sammy's Grill**, a hometown Louisiana bar &
-grill serving fresh seafood and Cajun favorites since 1988 (Prairieville + Highland Rd, Baton Rouge).
-This concept focuses on the **Prairieville** location: 37306 Perkins Rd, Prairieville, LA 70769 ·
-(225) 402-0606.
+An unsolicited, single-page redesign concept for **Sammy's Grill**, a hometown Louisiana bar & grill
+serving fresh Gulf seafood, scratch-made po'boys, burgers and Cajun favorites since **1988**. Two
+locations: **Highland Rd, Baton Rouge** (8635 Highland Road · (225) 766-9600) and **Prairieville**
+(37306 Perkins Road · (225) 402-0606).
 
 ## Why this redesign
 
-The current site (sammy-s-grill.com) is a dated, text-heavy template with a few pain points:
+The current site (sammy-s-grill.com) is a dated WordPress template. The main issues:
 
-- **No online food ordering** — only catering requests, so day-to-day orders still mean a phone call.
-- **One shared page** for both locations — Prairieville and Highland Rd blur together with no clear,
-  dedicated info per store.
-- **Dated, generic look** — a cream text-heavy template that doesn't feel appetizing or modern.
+- **Dated, generic template look** — small square item photos on a plain page; nothing that makes the
+  food look worth driving in for.
+- **Thin sense of place & story** — the 1988 heritage and Louisiana personality barely come through.
+- **Locations blur together** — hard to see, at a glance, what's where, what's open, and how to reach
+  each store.
 
-This concept modernizes the experience:
+This concept is an objective upgrade:
 
-- **Online Ordering** flow (the headline upgrade) with a **location switcher** (Prairieville /
-  Highland Rd · BR), quick-add favorites, and a real HTML menu-highlights section.
-- **Clear, per-location info** — dedicated hours, address, click-to-call, and directions.
-- **Catering "to geaux" request form** kept and refreshed.
-- A warm Louisiana-casual look (cream/kraft warmth, Cajun red + gold, hearty type, inline-SVG food
-  accents) that feels fun, appetizing, and clearly current.
+- **Full-bleed hero** on a real seafood photo, warm bayou-green / Cajun-red / cane-gold palette, and a
+  hand-built editorial type pairing (Bitter + Archivo) — appetizing and clearly current.
+- **Varied editorial layouts** — an alternating story split, a photo-led signature "bento" spread, a
+  proper dot-leader **full menu** with real categories & prices, a full-bleed po'boy band, and a
+  horizontal gallery. No repetitive icon/toast cards.
+- **The complete real menu with real prices** — appetizers through desserts, po'boys, steak & seafood,
+  kids and sides — transcribed from the business's published menu.
+- **Per-location clarity** — dedicated address, phone (click-to-call), hours, and an honest status note
+  (Highland open; Prairieville temporarily closed for repairs).
+- **Catering inquiry** — a real `mailto:` form that opens the customer's email addressed to the
+  catering team. No fake ordering, cart, or checkout.
+- **Polished, tasteful motion** — sticky shrink-on-scroll nav with animated underlines, a real animated
+  mobile menu, and `IntersectionObserver` scroll-reveal. Respects `prefers-reduced-motion`.
 
-## The money feature
+## Contact & ordering
 
-**Order Online** is styled and interactive as a preview (location switcher, order type, quick-add
-chips, pickup time). It is intentionally **not wired** to a payment/POS backend — the checkout button
-shows a demo confirmation. Wiring to the real POS happens at launch.
+The site uses the business's real public contact details and a **"Call to order"** action per location.
+There is intentionally **no online-ordering / cart / checkout UI** — Sammy's does not offer real online
+ordering, so none is faked. Catering routes through a real `mailto:` inquiry form.
 
 ## How to view
 
@@ -36,12 +44,11 @@ shows a demo confirmation. Wiring to the real POS happens at launch.
 
 ## Tech
 
-Plain, self-contained static site: `index.html` + `styles.css` + `script.js`. Responsive and
-mobile-first, accessible semantics, scroll-reveal + polished motion (respects
-`prefers-reduced-motion`). One Google Fonts link; all imagery is CSS gradients and inline SVG — no
-hotlinked photos.
+Plain, self-contained static site: `index.html` + `styles.css` + `script.js` + `assets/photos/`.
+Responsive and mobile-first, accessible semantics, one Google Fonts link. Photography is optimized
+(all images < 400 KB) from the business's own published site.
 
 ---
 
-*Unsolicited redesign concept. Not affiliated with or endorsed by Sammy's Grill. Contact details are
-the business's real public info; all other copy, pricing, and imagery are illustrative.*
+*Unsolicited redesign concept. Not affiliated with or endorsed by Sammy's Grill. Contact details and
+photos are the business's real public info; menu/prices reflect their published menu and may vary.*
