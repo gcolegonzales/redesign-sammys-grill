@@ -37,6 +37,20 @@ The site uses the business's real public contact details and a **"Call to order"
 There is intentionally **no online-ordering / cart / checkout UI** — Sammy's does not offer real online
 ordering, so none is faked. Catering routes through a real `mailto:` inquiry form.
 
+## SEO
+
+On-page SEO is wired for local search: unique `<title>` + meta description, a single `<h1>`,
+JSON-LD structured data (`@type: Restaurant` — Cajun/seafood bar & grill) with the real name, phone,
+Highland Rd address, opening hours, price range, cuisines, menu and image, complete Open Graph +
+`twitter:card` tags, a `robots.txt` (allow-all + `Sitemap:`), and a `sitemap.xml`.
+
+**Base URL placeholder:** canonical, `og:url`, sitemap, `robots.txt`, and all schema `url`/`image`
+values use the literal placeholder `https://REPLACE-WITH-DOMAIN.com/`. At deploy, do a one-line
+find-and-replace of `REPLACE-WITH-DOMAIN.com` with the real domain across `index.html`, `robots.txt`,
+and `sitemap.xml`. The Prairieville location is reflected honestly in the schema as a `department`
+with no active hours (it is temporarily closed for repairs); only the open Highland Rd location
+carries `openingHoursSpecification`.
+
 ## How to view
 
 - **Locally:** double-click `index.html` (no build step, no dependencies — fully static).
