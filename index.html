@@ -115,20 +115,23 @@
         <a class="btn btn-primary" href="#visit">Find a table</a>
       </div>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
-
-    <div class="mobile-nav" id="mobileNav" hidden>
-      <a href="#story">Our Story</a>
-      <a href="#menu">Menu</a>
-      <a href="#catering">Catering</a>
-      <a href="#visit">Locations</a>
-      <a class="btn btn-primary" href="#visit">Find a table</a>
-      <a class="btn btn-ghost" href="tel:+12257669600">Call Highland · (225) 766-9600</a>
-    </div>
   </header>
+
+  <!-- Mobile drawer + scrim (relocated to <body> by script.js to escape the
+       header's backdrop-filter containing block). Kept full-viewport height. -->
+  <div class="nav-scrim" id="navScrim" hidden></div>
+  <aside class="mobile-nav" id="mobileNav" aria-label="Mobile" hidden>
+    <a href="#story">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#catering">Catering</a>
+    <a href="#visit">Locations</a>
+    <a class="btn btn-primary" href="#visit">Find a table</a>
+    <a class="btn btn-ghost" href="tel:+12257669600">Call Highland · (225) 766-9600</a>
+  </aside>
 
   <main id="main">
     <span id="top"></span>
