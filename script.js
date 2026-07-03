@@ -45,32 +45,109 @@
     mobileNav.hidden = false;
     scrim.hidden = false;
 
+    // Elements that make up the rest of the page (everything except the drawer +
+    // scrim, which live at the end of <body>). Marked inert while the drawer is
+    // open so background content can't be focused or read by AT.
+    var pageRegions = [
+      document.getElementById("siteHeader"),
+      document.getElementById("main"),
+      document.querySelector(".site-footer")
+    ].filter(Boolean);
+
+    // Keep the closed drawer out of the tab order and hidden from AT.
+    var setDrawerHidden = function (hidden) {
+      if (hidden) {
+        mobileNav.setAttribute("inert", "");
+        mobileNav.setAttribute("aria-hidden", "true");
+      } else {
+        mobileNav.removeAttribute("inert");
+        mobileNav.removeAttribute("aria-hidden");
+      }
+    };
+    setDrawerHidden(true);
+
+    var getFocusable = function () {
+      return mobileNav.querySelectorAll(
+        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+    };
+
     var openMenu = function () {
       mobileNav.classList.add("open");
       scrim.classList.add("open");
       document.body.classList.add("nav-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close menu");
+      setDrawerHidden(false);
+      pageRegions.forEach(function (el) {
+        el.setAttribute("inert", "");
+        el.setAttribute("aria-hidden", "true");
+      });
+      // Move focus into the drawer (first focusable link).
+      var f = getFocusable();
+      if (f.length) f[0].focus();
     };
-    var closeMenu = function () {
+    var closeMenu = function (returnFocus) {
       mobileNav.classList.remove("open");
       scrim.classList.remove("open");
       document.body.classList.remove("nav-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
+      pageRegions.forEach(function (el) {
+        el.removeAttribute("inert");
+        el.removeAttribute("aria-hidden");
+      });
+      setDrawerHidden(true);
+      if (returnFocus !== false) toggle.focus();
     };
 
     toggle.addEventListener("click", function () {
       if (mobileNav.classList.contains("open")) closeMenu();
       else openMenu();
     });
-    scrim.addEventListener("click", closeMenu);
+    scrim.addEventListener("click", function () { closeMenu(); });
     mobileNav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", closeMenu);
+      // Nav-link tap: let the link navigate, but don't steal focus back to the
+      // toggle (the target section should receive focus flow instead).
+      a.addEventListener("click", function () { closeMenu(false); });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && mobileNav.classList.contains("open")) closeMenu();
+      if (!mobileNav.classList.contains("open")) return;
+      if (e.key === "Escape") {
+        closeMenu();
+        return;
+      }
+      if (e.key === "Tab") {
+        // Trap focus within the drawer.
+        var f = getFocusable();
+        if (!f.length) return;
+        var first = f[0];
+        var last = f[f.length - 1];
+        var active = document.activeElement;
+        if (e.shiftKey) {
+          if (active === first || !mobileNav.contains(active)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (active === last || !mobileNav.contains(active)) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
     });
+
+    // Reset drawer + toggle state when crossing the desktop breakpoint so a
+    // drawer left open on mobile doesn't leave stale state on desktop.
+    var mq = window.matchMedia("(min-width: 901px)");
+    var handleMq = function () {
+      if (mq.matches && mobileNav.classList.contains("open")) {
+        closeMenu(false);
+      }
+    };
+    if (mq.addEventListener) mq.addEventListener("change", handleMq);
+    else if (mq.addListener) mq.addListener(handleMq);
   }
 
   /* ---- Scroll reveal ---- */
