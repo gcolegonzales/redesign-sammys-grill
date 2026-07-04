@@ -167,6 +167,23 @@ body.nav-open { overflow: hidden; }
 .mobile-nav .btn { margin-top: .7rem; border-bottom: 0; }
 .mobile-nav .btn:first-of-type { margin-top: 1.1rem; }
 
+/* In-drawer close (X) — always the top-most control inside the drawer */
+.mobile-nav-close {
+  position: absolute; top: 1.05rem; right: 1.15rem;
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 12px;
+  background: rgba(20,12,6,.06); cursor: pointer;
+  display: grid; place-items: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .18s ease;
+}
+.mobile-nav-close:hover, .mobile-nav-close:focus-visible { background: rgba(20,12,6,.13); }
+.mobile-nav-close span {
+  position: absolute; width: 22px; height: 2.5px; border-radius: 2px;
+  background: var(--ink);
+}
+.mobile-nav-close span:first-child { transform: rotate(45deg); }
+.mobile-nav-close span:last-child { transform: rotate(-45deg); }
+
 /* When hidden attribute is present, keep the element out of layout entirely */
 .mobile-nav[hidden], .nav-scrim[hidden] { display: none; }
 

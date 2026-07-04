@@ -83,9 +83,11 @@
         el.setAttribute("inert", "");
         el.setAttribute("aria-hidden", "true");
       });
-      // Move focus into the drawer (first focusable link).
+      // Move focus into the drawer (the close button), without scrolling the
+      // page — focus() on a fixed drawer element otherwise yanks the document
+      // to the top, causing a jarring jump when the menu is opened mid-scroll.
       var f = getFocusable();
-      if (f.length) f[0].focus();
+      if (f.length) f[0].focus({ preventScroll: true });
     };
     var closeMenu = function (returnFocus) {
       mobileNav.classList.remove("open");
@@ -106,6 +108,8 @@
       else openMenu();
     });
     scrim.addEventListener("click", function () { closeMenu(); });
+    var navClose = document.getElementById("navClose");
+    if (navClose) navClose.addEventListener("click", function () { closeMenu(); });
     mobileNav.querySelectorAll("a").forEach(function (a) {
       // Nav-link tap: let the link navigate, but don't steal focus back to the
       // toggle (the target section should receive focus flow instead).
